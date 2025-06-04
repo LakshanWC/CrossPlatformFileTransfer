@@ -38,6 +38,8 @@ namespace FileTransferSoftware
                         MessageBox.Show("Server started and ready to go", "Server info",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     });
+
+                    UDPBroadcast.startListning();
                 }
                 catch (Exception ex)
                 {
@@ -108,7 +110,7 @@ namespace FileTransferSoftware
             btn_choose_file.Enabled = false;
         }
 
-        private void btn_send_Click(object sender, EventArgs e)
+        private async void btn_send_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txt_file_path.Text))
             {
@@ -126,8 +128,28 @@ namespace FileTransferSoftware
                     string encrypted = selectedDevice.Substring(selectedDevice.LastIndexOf("|") + 1);
                     Console.WriteLine("Extracted this: " + encrypted);
 
-                    // Now, send the file using the extracted encrypted IP
-                    homeService.sendFlie(encrypted, txt_file_path.Text);
+                    string decryptedIp = EncryptionHelper.Decrypt(encrypted);  
+                    string selectedFilePath = txt_file_path.Text.Trim();  
+
+
+                    if (string.IsNullOrEmpty(decryptedIp) || string.IsNullOrEmpty(selectedFilePath))
+                    {
+                        MessageBox.Show("Please select a device and file.");
+                        return;
+                    }
+
+                    int port = 5000; // same port your Android ServerSocket will listen on
+
+                    double result = await FileSender.SendFileOverTcpAsync(decryptedIp, port, selectedFilePath,
+                        progress =>
+                        {
+                            pb_file_upload_progress.Invoke((MethodInvoker)(() => pb_file_upload_progress.Value = progress));
+                        },
+                        speed =>
+                        {
+                            Console.WriteLine(speed);
+                            lbl_speed.Invoke((MethodInvoker)(() => lbl_speed.Text = $"Speed: {speed:F2} MB/s"));
+                        });
                 }
                 else
                 {
@@ -172,6 +194,11 @@ namespace FileTransferSoftware
             {
                 Console.WriteLine(ex.ToString());
             }
+        }
+
+        private void btn_refresh_Click(object sender, EventArgs e)
+        {
+            pb_file_upload_progress.Value = 0;
         }
     }
 }

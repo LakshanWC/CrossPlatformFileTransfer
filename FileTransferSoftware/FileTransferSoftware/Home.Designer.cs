@@ -43,7 +43,13 @@
             this.cmb_devices = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_search = new System.Windows.Forms.Button();
+            this.pb_file_upload_progress = new System.Windows.Forms.ProgressBar();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btn_refresh = new System.Windows.Forms.Button();
+            this.lbl_speed = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pb_selected_flie_icon)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_start_server
@@ -149,7 +155,7 @@
             // cmb_devices
             // 
             this.cmb_devices.FormattingEnabled = true;
-            this.cmb_devices.Location = new System.Drawing.Point(318, 18);
+            this.cmb_devices.Location = new System.Drawing.Point(246, 14);
             this.cmb_devices.Name = "cmb_devices";
             this.cmb_devices.Size = new System.Drawing.Size(253, 21);
             this.cmb_devices.TabIndex = 12;
@@ -157,7 +163,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(214, 21);
+            this.label1.Location = new System.Drawing.Point(142, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 13;
@@ -165,7 +171,7 @@
             // 
             // btn_search
             // 
-            this.btn_search.Location = new System.Drawing.Point(593, 16);
+            this.btn_search.Location = new System.Drawing.Point(521, 12);
             this.btn_search.Name = "btn_search";
             this.btn_search.Size = new System.Drawing.Size(75, 23);
             this.btn_search.TabIndex = 14;
@@ -173,11 +179,58 @@
             this.btn_search.UseVisualStyleBackColor = true;
             this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
             // 
+            // pb_file_upload_progress
+            // 
+            this.pb_file_upload_progress.Location = new System.Drawing.Point(544, 3);
+            this.pb_file_upload_progress.Name = "pb_file_upload_progress";
+            this.pb_file_upload_progress.Size = new System.Drawing.Size(130, 23);
+            this.pb_file_upload_progress.TabIndex = 15;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(481, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Progress";
+            // 
+            // btn_refresh
+            // 
+            this.btn_refresh.Location = new System.Drawing.Point(12, 295);
+            this.btn_refresh.Name = "btn_refresh";
+            this.btn_refresh.Size = new System.Drawing.Size(75, 23);
+            this.btn_refresh.TabIndex = 17;
+            this.btn_refresh.Text = "Refresh";
+            this.btn_refresh.UseVisualStyleBackColor = true;
+            this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
+            // 
+            // lbl_speed
+            // 
+            this.lbl_speed.AutoSize = true;
+            this.lbl_speed.Location = new System.Drawing.Point(354, 8);
+            this.lbl_speed.Name = "lbl_speed";
+            this.lbl_speed.Size = new System.Drawing.Size(48, 13);
+            this.lbl_speed.TabIndex = 18;
+            this.lbl_speed.Text = "Progress";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.pb_file_upload_progress);
+            this.panel1.Controls.Add(this.lbl_speed);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Location = new System.Drawing.Point(12, 378);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(683, 31);
+            this.panel1.TabIndex = 19;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(698, 412);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btn_refresh);
             this.Controls.Add(this.btn_search);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmb_devices);
@@ -195,6 +248,8 @@
             this.Name = "Home";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pb_selected_flie_icon)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,6 +272,11 @@
         private System.Windows.Forms.ComboBox cmb_devices;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_search;
+        private System.Windows.Forms.ProgressBar pb_file_upload_progress;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_refresh;
+        private System.Windows.Forms.Label lbl_speed;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

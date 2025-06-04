@@ -8,36 +8,74 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/btn_nanoHttpd_on"
+        android:layout_width="180dp"
+        android:layout_height="51dp"
+        android:text="Trun on Server"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.538" />
+
+    <Button
+        android:id="@+id/btnSendFile"
+        android:layout_width="191dp"
+        android:layout_height="46dp"
+        android:text="Send File"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.81" />
+
+    <Button
         android:id="@+id/btn_broadcast_respons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BroadCast Response"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_nanoHttpd_on"
-        android:layout_width="180dp"
-        android:layout_height="51dp"
-        android:text="Trun on NanoHttpd"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.411" />
+        app:layout_constraintVertical_bias="0.626" />
 
     <Button
         android:id="@+id/btn_nanoHttpd_off"
         android:layout_width="192dp"
         android:layout_height="49dp"
-        android:text="Trun Off NanoHttpd"
+        android:text="Trun Off Server"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.786" />
+        app:layout_constraintVertical_bias="0.912" />
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="163dp"
+        android:layout_height="53dp"
+        android:text="Search Devices"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.438" />
+
+    <Spinner
+        android:layout_width="175dp"
+        android:layout_height="53dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.248"
+        android:id="@+id/spinnerDevices"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

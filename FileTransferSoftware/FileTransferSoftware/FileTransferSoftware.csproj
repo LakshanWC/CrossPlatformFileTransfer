@@ -55,6 +55,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service Layer\EncryptionHelper.cs" />
+    <Compile Include="Service Layer\FileSender.cs" />
     <Compile Include="Service Layer\HomeService.cs" />
     <Compile Include="Service Layer\HttpListenerService.cs" />
     <Compile Include="Service Layer\UDPBroadcast.cs" />

@@ -10,6 +10,43 @@ namespace FileTransferSoftware.Service_Layer
     public class UDPBroadcast
     {
         private const int discoveryPort = 8888;
+        private static bool isRunning = false;
+
+        public static void startListning()
+        {
+            if (isRunning) return;
+            isRunning = true;
+            Task.Run(() => {
+                using (UdpClient udpListener = new UdpClient(discoveryPort)) {
+                    while (isRunning)
+                    {
+                        try
+                        {
+                            IPEndPoint remoteEP = new IPEndPoint(IPAddress.Any, 0);
+                            byte[] recivedData = udpListener.Receive(ref remoteEP);
+                            string message = Encoding.UTF8.GetString(recivedData);
+                            if (message == "DISCOVER_FILETRANSFER")
+                            {
+                                string deviceName = Environment.MachineName;
+                                string deviceIp = getLocalIPAddress();
+
+                                string deviceInfo = deviceName + "|" + deviceIp;
+                                deviceInfo = EncryptionHelper.Encrypt(deviceInfo);
+
+                                byte[] responseData = Encoding.UTF8.GetBytes(deviceInfo);
+
+                                udpListener.Send(responseData, responseData.Length, remoteEP);
+                                Console.WriteLine($"Responded to discovery request from {remoteEP.Address}");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Discovery responder error: {ex.Message}");
+                        }
+                    }
+                }
+            });
+        }
 
         public static List<string> discoverDevices()
         {
@@ -61,5 +98,18 @@ namespace FileTransferSoftware.Service_Layer
 
             return discoveredDevices;
         }
+    
+        public static string getLocalIPAddress()
+        {
+            foreach (var ip in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            return "IP_Not_Found";
+        }
+
     }
 }

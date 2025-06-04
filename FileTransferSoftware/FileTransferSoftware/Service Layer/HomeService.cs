@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -136,35 +137,46 @@ namespace FileTransferSoftware.Service_Layer
             }
         }*/
 
-        public async void sendFlie(string encryptedIp,string selectedFilePath)
+        public async void sendFile(string encryptedIp, string selectedFilePath)
         {
             try
             {
-                Console.WriteLine("sending file " +encryptedIp);
-               
-
                 string deviceIp = EncryptionHelper.Decrypt(encryptedIp).ToString();
-
-                Console.WriteLine("i found this ip form here: "+deviceIp);
                 string filePath = selectedFilePath;
+
+                if (!File.Exists(filePath))
+                {
+                    MessageBox.Show("File not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 using (var client = new HttpClient())
                 {
-                    var content = new MultipartFormDataContent();
-                    var fileContent = new ByteArrayContent(File.ReadAllBytes(filePath));
-                    fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
-                    content.Add(fileContent, "uploadedFile", Path.GetFileName(filePath));
+                    var content = new MultipartFormDataContent("UploadBoundary");
 
-                    // Replace with actual IP and endpoint
-                    HttpResponseMessage response = await client.PutAsync($"http://{deviceIp}:8080", content);
+                    // Read file
+                    byte[] fileBytes = File.ReadAllBytes(filePath);
+                    var fileContent = new ByteArrayContent(fileBytes);
+                    fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+
+                    // Add with correct key and filename
+                    string fileName = Path.GetFileName(filePath);
+                    content.Add(fileContent, "uploadedFile", fileName);
+
+                    Console.WriteLine($"Sending to: http://{deviceIp}:8080");
+                    Console.WriteLine($"Key: uploadedFile | Filename: {fileName}");
+
+                    // Send request
+                    var response = await client.PostAsync($"http://{deviceIp}:8080", content);
+                    var responseText = await response.Content.ReadAsStringAsync();
 
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("File sent successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("File sent successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("Failed to send file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Server rejected: {responseText}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -173,6 +185,5 @@ namespace FileTransferSoftware.Service_Layer
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }

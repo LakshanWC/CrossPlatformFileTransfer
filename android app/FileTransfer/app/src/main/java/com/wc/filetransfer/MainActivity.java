@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     private UDPDiscovery udpDiscovery = new UDPDiscovery();
-    private FileServer fileServer = new FileServer(this);
+    private FileReceiver fileServer = new FileReceiver(this);
     private Button btn_repond;
     private Button btn_start_nano;
     private Button btn_stop_nano;
@@ -54,17 +54,16 @@ public class MainActivity extends AppCompatActivity {
         btn_stop_nano.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(fileServer.isRunning()== true) {
                     fileServer.stopServer();
                     Toast.makeText(MainActivity.this, "Server Stopped", Toast.LENGTH_SHORT).show();
                     btn_start_nano.setEnabled(true);
                     btn_stop_nano.setEnabled(false);
-                }
             }
         });
-
-
     }
 
+    public void sendFile(View view){
+
+    }
 
 }
