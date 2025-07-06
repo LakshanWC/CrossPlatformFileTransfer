@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -184,6 +185,43 @@ namespace FileTransferSoftware.Service_Layer
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // set rounded coners to the panle
+        public void setRoundConners(Panel panel,int radius)
+        {
+            Rectangle bounds = panel.ClientRectangle;
+            GraphicsPath path = new GraphicsPath();
+
+            path.AddArc(bounds.X, bounds.Y, radius, radius, 180, 90); 
+            path.AddArc(bounds.Right - radius, bounds.Y, radius, radius, 270, 90);
+            path.AddArc(bounds.Right - radius, bounds.Bottom - radius, radius, radius, 0, 90); 
+            path.AddArc(bounds.X, bounds.Bottom - radius, radius, radius, 90, 90); 
+            path.CloseAllFigures();
+            panel.Region = new Region(path);
+        }
+
+        //fill the progressbar
+        public void fillProgressBar(Panel backgroundPanel, Panel fillPanel,Label precentage, int progressPercent)
+        {
+
+            if (progressPercent < 0) progressPercent = 0;
+            if (progressPercent > 100) progressPercent = 100;
+
+            // Update width
+            int newWidth = (int)(backgroundPanel.Width * (progressPercent / 100.0));
+            fillPanel.Width = newWidth;
+
+            // Maintain height & position
+            fillPanel.Height = backgroundPanel.Height;
+            fillPanel.Location = new Point(0, 0);
+
+            //show presentage count
+            precentage.Text = (progressPercent.ToString()+" %");
+
+            // Optional: Rounded corners
+           // SetRoundedRegion(backgroundPanel, 10, true);
+           // SetRoundedRegion(fillPanel, 10, progressPercent >= 100); // only round right if full
         }
     }
 }

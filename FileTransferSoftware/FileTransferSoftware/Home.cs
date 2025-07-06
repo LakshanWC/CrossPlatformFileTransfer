@@ -19,6 +19,8 @@ namespace FileTransferSoftware
         private bool isFolder;
         private List<string> fileDetails;
         private List<string> devices;
+        private Panel panelFill = new Panel();
+        private bool isServerOn = false;
 
         public Home()
         {
@@ -28,27 +30,42 @@ namespace FileTransferSoftware
 
         private void btn_start_server_Click(object sender, EventArgs e)
         {
-            Task.Run(() =>
+            if (!isServerOn) 
             {
-                try
+                btn_server_stat.Text = "Server Status: Online";
+                isServerOn = true;
+                Task.Run(() =>
                 {
-                    HttpListenerService.StartHttpListener(new[] { "http://localhost:5000/" });
-                    this.Invoke((MethodInvoker)delegate {
-                        btn_start_server.BackColor = Color.GreenYellow;
-                        MessageBox.Show("Server started and ready to go", "Server info",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    });
+                    try
+                    {
+                        HttpListenerService.StartHttpListener(new[] { "http://localhost:5000/" });
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            btn_start_server.BackColor = Color.GreenYellow;
+                            MessageBox.Show("Server started and ready to go", "Server info",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        });
 
-                    UDPBroadcast.startListning();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.ToString());
-                    this.Invoke((MethodInvoker)delegate {
-                        btn_start_server.BackColor = Color.Red;
-                    });
-                }
-            });
+                        UDPBroadcast.startListning();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            btn_start_server.BackColor = Color.Red;
+                        });
+                    }
+                });
+            } else if (isServerOn)
+            {
+                btn_server_stat.Text = "Server Status: Offline";
+                HttpListenerService.StopHttpListener();
+                btn_start_server.BackColor = SystemColors.Control;
+                isServerOn=false;
+                MessageBox.Show("Server stopped", "Server info",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btn_choose_file_Click(object sender, EventArgs e)
@@ -63,10 +80,8 @@ namespace FileTransferSoftware
                         if (homeService.getFileDetails(txt_file_path.Text, isFolder) == null) { }
                         else
                         {
-                            fileDetails = homeService.getFileDetails(txt_file_path.Text,isFolder);
-                            txt_flie_name.Text = fileDetails[0];
-                            txt_flie_size.Text = fileDetails[1];
-                            txt_flie_create_date.Text = fileDetails[2];
+                            //fileDetails = homeService.getFileDetails(txt_file_path.Text,isFolder);
+                            btn_send.Text = "Send File";
                         }
                     }
                 }
@@ -83,31 +98,26 @@ namespace FileTransferSoftware
                         if (homeService.getFileDetails(txt_file_path.Text, isFolder) == null) { }
                         else
                         {
-                            fileDetails = homeService.getFileDetails(txt_file_path.Text, isFolder);
-                            txt_flie_name.Text = fileDetails[0];
-                            txt_flie_size.Text = fileDetails[1];
-                            txt_flie_create_date.Text = fileDetails[2];
+                            // fileDetails = homeService.getFileDetails(txt_file_path.Text, isFolder);
+                            btn_send.Text ="Send File";
                         }
                     }
                 }
             }
         }
 
-        private void btn_select_file_Click(object sender, EventArgs e)
-        {
-            isFolder = false;
-            btn_choose_file.Enabled = true;
-        }
-
-        private void btn_select_folder_Click(object sender, EventArgs e)
-        {
-            isFolder = true;
-            btn_choose_file.Enabled=true;
-        }
-
         private void init()
         {
             btn_choose_file.Enabled = false;
+            homeService.setRoundConners(custom_pgb,8);
+
+            panelFill.Parent = custom_pgb;
+            panelFill.BackColor = ColorTranslator.FromHtml("#408EE0");
+            panelFill.Location = new Point(0, 0);
+            panelFill.Height = custom_pgb.Height;
+            panelFill.Width = 0; // initial
+
+            progressBarStartUp();
         }
 
         private async void btn_send_Click(object sender, EventArgs e)
@@ -143,7 +153,8 @@ namespace FileTransferSoftware
                     double result = await FileSender.SendFileOverTcpAsync(decryptedIp, port, selectedFilePath,
                         progress =>
                         {
-                            pb_file_upload_progress.Invoke((MethodInvoker)(() => pb_file_upload_progress.Value = progress));
+                            //pb_file_upload_progress.Invoke((MethodInvoker)(() => pb_file_upload_progress.Value = progress));
+                            homeService.fillProgressBar(custom_pgb,panelFill,lbl_progressCount,progress);
                         },
                         speed =>
                         {
@@ -156,15 +167,6 @@ namespace FileTransferSoftware
                     Console.WriteLine("No device selected or invalid index");
                 }
             }
-        }
-
-
-        private void btn_stop_server_Click(object sender, EventArgs e)
-        {
-            HttpListenerService.StopHttpListener();
-            btn_start_server.BackColor = SystemColors.Control;
-            MessageBox.Show("Server stopped", "Server info",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btn_search_Click(object sender, EventArgs e)
@@ -196,9 +198,40 @@ namespace FileTransferSoftware
             }
         }
 
-        private void btn_refresh_Click(object sender, EventArgs e)
+        private void rbtn_file_CheckedChanged(object sender, EventArgs e)
         {
-            pb_file_upload_progress.Value = 0;
+            isFolder = false;
+            btn_choose_file.Enabled = true;
+        }
+
+        private void rbtn_folder_CheckedChanged(object sender, EventArgs e)
+        {
+            isFolder = true;
+            btn_choose_file.Enabled=true;
+        }
+
+        private async void progressBarStartUp()
+        {
+            for (int i = 0; i <=100; i++)
+            {
+                homeService.fillProgressBar(custom_pgb, panelFill,lbl_progressCount, i);
+                await Task.Delay(10);
+            }
+            for (int i = 100; i >=0; i--)
+            {
+                homeService.fillProgressBar(custom_pgb, panelFill,lbl_progressCount, i);
+                await Task.Delay(10);
+            }
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
