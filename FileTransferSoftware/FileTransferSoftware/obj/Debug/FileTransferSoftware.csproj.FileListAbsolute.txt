@@ -8,3 +8,4 @@ D:\myProjects\FileTransferSoftware\FileTransferSoftware\obj\Debug\FileTransferSo
 D:\myProjects\FileTransferSoftware\FileTransferSoftware\obj\Debug\FileTransferSoftware.csproj.CoreCompileInputs.cache
 D:\myProjects\FileTransferSoftware\FileTransferSoftware\obj\Debug\FileTransferSoftware.exe
 D:\myProjects\FileTransferSoftware\FileTransferSoftware\obj\Debug\FileTransferSoftware.pdb
+D:\myProjects\FileTransferSoftware\FileTransferSoftware\obj\Debug\FileTransferSoftware.exe.config

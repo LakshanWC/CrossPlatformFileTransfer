@@ -3,28 +3,12 @@
   "WorkspaceRootPath": "D:\\myProjects\\FileTransferSoftware\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A7536461-EC7E-4C4B-97B8-EAF8D92F9D15}|FileTransferSoftware\\FileTransferSoftware.csproj|d:\\myprojects\\filetransfersoftware\\filetransfersoftware\\service layer\\udpbroadcast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7536461-EC7E-4C4B-97B8-EAF8D92F9D15}|FileTransferSoftware\\FileTransferSoftware.csproj|solutionrelative:filetransfersoftware\\service layer\\udpbroadcast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7536461-EC7E-4C4B-97B8-EAF8D92F9D15}|FileTransferSoftware\\FileTransferSoftware.csproj|D:\\myProjects\\FileTransferSoftware\\filetransfersoftware\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A7536461-EC7E-4C4B-97B8-EAF8D92F9D15}|FileTransferSoftware\\FileTransferSoftware.csproj|solutionrelative:filetransfersoftware\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A7536461-EC7E-4C4B-97B8-EAF8D92F9D15}|FileTransferSoftware\\FileTransferSoftware.csproj|D:\\myProjects\\FileTransferSoftware\\filetransfersoftware\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A7536461-EC7E-4C4B-97B8-EAF8D92F9D15}|FileTransferSoftware\\FileTransferSoftware.csproj|solutionrelative:filetransfersoftware\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A7536461-EC7E-4C4B-97B8-EAF8D92F9D15}|FileTransferSoftware\\FileTransferSoftware.csproj|D:\\myProjects\\FileTransferSoftware\\filetransfersoftware\\service layer\\encryptionhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7536461-EC7E-4C4B-97B8-EAF8D92F9D15}|FileTransferSoftware\\FileTransferSoftware.csproj|solutionrelative:filetransfersoftware\\service layer\\encryptionhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7536461-EC7E-4C4B-97B8-EAF8D92F9D15}|FileTransferSoftware\\FileTransferSoftware.csproj|D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Service Layer\\HttpListenerService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7536461-EC7E-4C4B-97B8-EAF8D92F9D15}|FileTransferSoftware\\FileTransferSoftware.csproj|solutionrelative:FileTransferSoftware\\Service Layer\\HttpListenerService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7536461-EC7E-4C4B-97B8-EAF8D92F9D15}|FileTransferSoftware\\FileTransferSoftware.csproj|D:\\myProjects\\FileTransferSoftware\\filetransfersoftware\\service layer\\filesender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7536461-EC7E-4C4B-97B8-EAF8D92F9D15}|FileTransferSoftware\\FileTransferSoftware.csproj|solutionrelative:filetransfersoftware\\service layer\\filesender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A7536461-EC7E-4C4B-97B8-EAF8D92F9D15}|FileTransferSoftware\\FileTransferSoftware.csproj|D:\\myProjects\\FileTransferSoftware\\filetransfersoftware\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7536461-EC7E-4C4B-97B8-EAF8D92F9D15}|FileTransferSoftware\\FileTransferSoftware.csproj|solutionrelative:filetransfersoftware\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A7536461-EC7E-4C4B-97B8-EAF8D92F9D15}|FileTransferSoftware\\FileTransferSoftware.csproj|D:\\myProjects\\FileTransferSoftware\\filetransfersoftware\\service layer\\homeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,87 +38,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FileSender.cs",
-              "DocumentMoniker": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Service Layer\\FileSender.cs",
-              "RelativeDocumentMoniker": "FileTransferSoftware\\Service Layer\\FileSender.cs",
-              "ToolTip": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Service Layer\\FileSender.cs",
-              "RelativeToolTip": "FileTransferSoftware\\Service Layer\\FileSender.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAAAF0AAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-07T12:54:25.536Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "EncryptionHelper.cs",
-              "DocumentMoniker": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Service Layer\\EncryptionHelper.cs",
-              "RelativeDocumentMoniker": "FileTransferSoftware\\Service Layer\\EncryptionHelper.cs",
-              "ToolTip": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Service Layer\\EncryptionHelper.cs",
-              "RelativeToolTip": "FileTransferSoftware\\Service Layer\\EncryptionHelper.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAACMAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T12:59:51.049Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Home.cs [Design]",
               "DocumentMoniker": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Home.cs",
               "RelativeDocumentMoniker": "FileTransferSoftware\\Home.cs",
-              "ToolTip": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Home.cs [Design]",
-              "RelativeToolTip": "FileTransferSoftware\\Home.cs [Design]",
+              "ToolTip": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Home.cs [Design]*",
+              "RelativeToolTip": "FileTransferSoftware\\Home.cs [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T12:35:26.446Z"
+              "WhenOpened": "2025-05-06T12:35:26.446Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UDPBroadcast.cs",
-              "DocumentMoniker": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Service Layer\\UDPBroadcast.cs",
-              "RelativeDocumentMoniker": "FileTransferSoftware\\Service Layer\\UDPBroadcast.cs",
-              "ToolTip": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Service Layer\\UDPBroadcast.cs",
-              "RelativeToolTip": "FileTransferSoftware\\Service Layer\\UDPBroadcast.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAIwGEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T13:38:57.301Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "HomeService.cs",
               "DocumentMoniker": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Service Layer\\HomeService.cs",
               "RelativeDocumentMoniker": "FileTransferSoftware\\Service Layer\\HomeService.cs",
               "ToolTip": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Service Layer\\HomeService.cs",
               "RelativeToolTip": "FileTransferSoftware\\Service Layer\\HomeService.cs",
-              "ViewState": "AgIAAJsAAAAAAAAAAAAwwLMAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAkwNgAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T08:18:41.103Z"
+              "WhenOpened": "2025-05-05T08:18:41.103Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "HttpListenerService.cs",
-              "DocumentMoniker": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Service Layer\\HttpListenerService.cs",
-              "RelativeDocumentMoniker": "FileTransferSoftware\\Service Layer\\HttpListenerService.cs",
-              "ToolTip": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Service Layer\\HttpListenerService.cs",
-              "RelativeToolTip": "FileTransferSoftware\\Service Layer\\HttpListenerService.cs",
-              "ViewState": "AgIAAE8AAAAAAAAAAAAIwEQAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T07:58:46.352Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Home.cs",
               "DocumentMoniker": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Home.cs",
               "RelativeDocumentMoniker": "FileTransferSoftware\\Home.cs",
-              "ToolTip": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Home.cs",
-              "RelativeToolTip": "FileTransferSoftware\\Home.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAD4vykAAAAxAAAAAAAAAA==",
+              "ToolTip": "D:\\myProjects\\FileTransferSoftware\\FileTransferSoftware\\Home.cs*",
+              "RelativeToolTip": "FileTransferSoftware\\Home.cs*",
+              "ViewState": "AgIAACcAAAAAAAAAAAD4vzsAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T05:33:42.835Z"
+              "WhenOpened": "2025-05-05T05:33:42.835Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -1,0 +1,10 @@
+D:\myProjects\FileTransferSoftware\FileTransferSoftware\bin\Release\FileTransferSoftware.exe.config
+D:\myProjects\FileTransferSoftware\FileTransferSoftware\bin\Release\FileTransferSoftware.exe
+D:\myProjects\FileTransferSoftware\FileTransferSoftware\bin\Release\FileTransferSoftware.pdb
+D:\myProjects\FileTransferSoftware\FileTransferSoftware\obj\Release\FileTransferSoftware.csproj.AssemblyReference.cache
+D:\myProjects\FileTransferSoftware\FileTransferSoftware\obj\Release\FileTransferSoftware.Home.resources
+D:\myProjects\FileTransferSoftware\FileTransferSoftware\obj\Release\FileTransferSoftware.Properties.Resources.resources
+D:\myProjects\FileTransferSoftware\FileTransferSoftware\obj\Release\FileTransferSoftware.csproj.GenerateResource.cache
+D:\myProjects\FileTransferSoftware\FileTransferSoftware\obj\Release\FileTransferSoftware.csproj.CoreCompileInputs.cache
+D:\myProjects\FileTransferSoftware\FileTransferSoftware\obj\Release\FileTransferSoftware.exe
+D:\myProjects\FileTransferSoftware\FileTransferSoftware\obj\Release\FileTransferSoftware.pdb
