@@ -30,13 +30,12 @@ namespace FileTransferSoftware.Service_Layer
                                 string deviceName = Environment.MachineName;
                                 string deviceIp = getLocalIPAddress();
 
-                                string deviceInfo = deviceName + "|" + deviceIp;
-                                deviceInfo = EncryptionHelper.Encrypt(deviceInfo);
+                                string deviceInfo = deviceName + "|" + EncryptionHelper.Encrypt(deviceIp);
 
                                 byte[] responseData = Encoding.UTF8.GetBytes(deviceInfo);
 
                                 udpListener.Send(responseData, responseData.Length, remoteEP);
-                                Console.WriteLine($"Responded to discovery request from {remoteEP.Address}");
+                                Console.WriteLine($"Responded to discovery request");
                             }
                         }
                         catch (Exception ex)

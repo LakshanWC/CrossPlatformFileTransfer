@@ -1,6 +1,7 @@
 package com.wc.filetransfer;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,11 +19,16 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private UDPDiscovery udpDiscovery = new UDPDiscovery();
-    private FileReceiver fileServer = new FileReceiver(this);
+    private final UDPDiscovery udpDiscovery = new UDPDiscovery();
+    private final FileReceiver fileServer = new FileReceiver(this);
     private Button btn_repond;
     private Button btn_start_nano;
+    private Button btn_search;
     private Button btn_stop_nano;
+    private Spinner currentDevices;
+    private List<String> rawResponse = new ArrayList<>();
+    private List<String> respodedDevices = new ArrayList<>();
+    private List<String> respondDeviceIps = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendFile(View view){
+        /*
         udpDiscovery.discoverDevices(updatedList -> runOnUiThread(() -> {
             Spinner deviceSpinner = findViewById(R.id.spinnerDevices);
             ArrayAdapter<String> adapter = new ArrayAdapter<>(
@@ -75,5 +82,45 @@ public class MainActivity extends AppCompatActivity {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             deviceSpinner.setAdapter(adapter);
         }));
+
+         */
+    }
+
+    public void btn_search_click(View view){
+        try {
+            respodedDevices.clear(); //clear out the list
+            btn_search = findViewById(R.id.btn_search);
+            currentDevices = findViewById(R.id.spinnerDevices);
+            udpDiscovery.discoverDevices(devices -> runOnUiThread(() -> {
+                rawResponse = devices;
+                cleanResponse(rawResponse);
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, respodedDevices);
+                currentDevices.setAdapter(adapter);
+
+            }));
+        }catch (Exception e){
+            Log.d("MainActivity",e.getMessage());
+        }
+    }
+
+
+    private void cleanResponse(List<String>raw){
+        int count = 0;
+        String rawValue;
+        try {
+            while (!raw.isEmpty() && count < raw.size()) {
+                rawValue = raw.get(count);
+                int speraterIndex = rawValue.indexOf("|");
+                String deviceName = rawValue.substring(0, speraterIndex);
+                String relatedIp = rawValue.substring(speraterIndex + 1);
+
+                respodedDevices.add(deviceName);
+                respondDeviceIps.add(relatedIp);
+                count++;
+            }
+        }catch (Exception e){
+            Log.d("MainActivity",e.getMessage());
+        }
     }
 }

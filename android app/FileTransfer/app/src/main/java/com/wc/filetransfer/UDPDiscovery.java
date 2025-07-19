@@ -136,7 +136,10 @@ public class UDPDiscovery {
                     }
                 }
             }
-        } catch (Exception ignored) { } // for now eat exceptions
+        } catch (Exception e) {
+            System.out.println("UDPDiscovery class : "+e.getMessage());
+            Log.d("UDPDiscovery class :",e.getMessage());
+        }
         return "";
     }
 

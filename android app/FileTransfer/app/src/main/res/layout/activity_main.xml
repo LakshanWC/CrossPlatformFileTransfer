@@ -56,7 +56,7 @@
         app:layout_constraintVertical_bias="0.912" />
 
     <Button
-        android:id="@+id/btnSearch"
+        android:id="@+id/btn_search"
         android:layout_width="163dp"
         android:layout_height="53dp"
         android:text="Search Devices"
@@ -65,7 +65,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.438"
-        android:onClick="sendFile"/>
+        android:onClick="btn_search_click"/>
 
     <Spinner
         android:layout_width="175dp"
