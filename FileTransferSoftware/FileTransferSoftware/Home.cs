@@ -47,6 +47,7 @@ namespace FileTransferSoftware
                         });
 
                         UDPBroadcast.startListning();
+                        Console.WriteLine("Start Listing");
                     }
                     catch (Exception ex)
                     {
@@ -226,7 +227,11 @@ namespace FileTransferSoftware
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
-
+            txt_file_path.Clear();
+            rbtn_file.Checked = false;
+            rbtn_folder.Checked = false;
+            isFolder = false;
+            btn_choose_file.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)

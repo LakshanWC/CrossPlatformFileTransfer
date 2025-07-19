@@ -45,11 +45,12 @@
             this.custom_pgb = new System.Windows.Forms.Panel();
             this.lbl_progressCount = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btn_clear = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btn_server_stat = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -204,6 +205,25 @@
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(14, 24);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(71, 23);
+            this.button3.TabIndex = 32;
+            this.button3.Text = "Settings";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(306, 24);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(71, 23);
+            this.button1.TabIndex = 31;
+            this.button1.Text = "Exit";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // button2
             // 
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
@@ -217,23 +237,13 @@
             // 
             // btn_clear
             // 
-            this.btn_clear.Location = new System.Drawing.Point(220, 148);
+            this.btn_clear.Location = new System.Drawing.Point(219, 148);
             this.btn_clear.Name = "btn_clear";
-            this.btn_clear.Size = new System.Drawing.Size(107, 23);
+            this.btn_clear.Size = new System.Drawing.Size(92, 23);
             this.btn_clear.TabIndex = 25;
             this.btn_clear.Text = "Clear Selection ";
             this.btn_clear.UseVisualStyleBackColor = true;
             this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(306, 24);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(71, 23);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "Exit";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btn_server_stat
             // 
@@ -244,20 +254,21 @@
             this.btn_server_stat.Text = "Server Status: Offline";
             this.btn_server_stat.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // button4
             // 
-            this.button3.Location = new System.Drawing.Point(14, 24);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(71, 23);
-            this.button3.TabIndex = 32;
-            this.button3.Text = "Settings";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button4.Location = new System.Drawing.Point(322, 148);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(102, 23);
+            this.button4.TabIndex = 32;
+            this.button4.Text = "Recive File/Folder";
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 395);
+            this.ClientSize = new System.Drawing.Size(439, 395);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.btn_server_stat);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lbl_progressCount);
@@ -307,6 +318,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btn_server_stat;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 

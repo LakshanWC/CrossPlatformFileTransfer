@@ -7,6 +7,7 @@ public class EncryptionHelper
 {
     private static readonly string KEY = "1234567890ABCDEF"; // Same 16-char key
     private static readonly string IV = "RandomInitVector"; // Same 16-char IV
+
     public static string Decrypt(string encrypted)
     {
         if (string.IsNullOrWhiteSpace(encrypted))
@@ -51,11 +52,11 @@ public class EncryptionHelper
     }
 
 
-    public static string Encrypt(string encrypted)
+    public static string Encrypt(string plainText)
     {
-        byte[] cipherText = Convert.FromBase64String(encrypted);
         byte[] keyBytes = Encoding.UTF8.GetBytes(KEY);
         byte[] ivBytes = Encoding.UTF8.GetBytes(IV);
+        byte[] plainBytes = Encoding.UTF8.GetBytes(plainText);
 
         using (Aes aesAlg = Aes.Create())
         {
@@ -64,13 +65,18 @@ public class EncryptionHelper
             aesAlg.Key = keyBytes;
             aesAlg.IV = ivBytes;
 
-            ICryptoTransform decryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
-            using (MemoryStream msDecrypt = new MemoryStream(cipherText))
-            using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Write))
-            using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+            using (MemoryStream msEncrypt = new MemoryStream())
             {
-                return srDecrypt.ReadToEnd();
+                using (ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV))
+                using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                {
+                    csEncrypt.Write(plainBytes, 0, plainBytes.Length);
+                    csEncrypt.FlushFinalBlock();
+
+                    return Convert.ToBase64String(msEncrypt.ToArray());
+                }
             }
         }
     }
+
 }
