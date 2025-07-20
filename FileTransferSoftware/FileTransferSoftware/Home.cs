@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -28,26 +29,33 @@ namespace FileTransferSoftware
             init();
         }
 
+        private CancellationTokenSource tcpServerCancellationTokenSource;
+
         private void btn_start_server_Click(object sender, EventArgs e)
         {
-            if (!isServerOn) 
+            if (!isServerOn)
             {
                 btn_server_stat.Text = "Server Status: Online";
                 isServerOn = true;
+
+                tcpServerCancellationTokenSource = new CancellationTokenSource();
+
                 Task.Run(() =>
                 {
                     try
                     {
-                        HttpListenerService.StartHttpListener(new[] { "http://localhost:5000/" });
+                        // Start TCP server with cancellation token to allow stopping
+                        TcpFileReceiver.Start(tcpServerCancellationTokenSource.Token);
+
                         this.Invoke((MethodInvoker)delegate
                         {
                             btn_start_server.BackColor = Color.GreenYellow;
-                            MessageBox.Show("Server started and ready to go", "Server info",
+                            MessageBox.Show("TCP Server started and ready to go", "Server info",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                         });
 
                         UDPBroadcast.startListning();
-                        Console.WriteLine("Start Listing");
+                        Console.WriteLine("Start Listening");
                     }
                     catch (Exception ex)
                     {
@@ -58,16 +66,21 @@ namespace FileTransferSoftware
                         });
                     }
                 });
-            } else if (isServerOn)
+            }
+            else if (isServerOn)
             {
                 btn_server_stat.Text = "Server Status: Offline";
-                HttpListenerService.StopHttpListener();
+
+                // Stop the TCP server by cancelling
+                tcpServerCancellationTokenSource?.Cancel();
+
                 btn_start_server.BackColor = SystemColors.Control;
-                isServerOn=false;
+                isServerOn = false;
                 MessageBox.Show("Server stopped", "Server info",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
 
         private void btn_choose_file_Click(object sender, EventArgs e)
         {
@@ -237,6 +250,11 @@ namespace FileTransferSoftware
         private void button1_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
