@@ -1,14 +1,19 @@
 package com.wc.filetransfer;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -21,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     private final UDPDiscovery udpDiscovery = new UDPDiscovery();
     private final FileReceiver fileServer = new FileReceiver(this);
+    private FileSender fileSender;
+    private final int PICKFILE_REQUEST_CODE = 100;
+    private final int PICKFOLDER_REQUEST_CODE = 1001;
     private Button btn_repond;
     private Button btn_start_nano;
     private Button btn_search;
@@ -29,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private List<String> rawResponse = new ArrayList<>();
     private List<String> respodedDevices = new ArrayList<>();
     private List<String> respondDeviceIps = new ArrayList<>();
+    private int selectedSpinnerIndex =-1;
+    public static Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         btn_repond = findViewById(R.id.btn_broadcast_respons);
         btn_start_nano = findViewById(R.id.btn_nanoHttpd_on);
         btn_stop_nano = findViewById(R.id.btn_nanoHttpd_off);
+        ProgressBar progressBar = findViewById(R.id.progressBar);
+        fileSender = new FileSender(this,progressBar);
 
         btn_repond.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,16 +86,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendFile(View view){
-        /*
-        udpDiscovery.discoverDevices(updatedList -> runOnUiThread(() -> {
-            Spinner deviceSpinner = findViewById(R.id.spinnerDevices);
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                    this, android.R.layout.simple_spinner_item, updatedList);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            deviceSpinner.setAdapter(adapter);
-        }));
-
-         */
+        try{
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("Do want to send a File or a Folder")
+                .setItems(new CharSequence[]{"Pick a File","Pick a Folder"},(dialog,which)->{
+                    if(which == 0){
+                        Intent pickFileIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                        pickFileIntent.setType("*/*");
+                        pickFileIntent.addCategory(Intent.CATEGORY_OPENABLE);
+                        startActivityForResult(pickFileIntent,PICKFILE_REQUEST_CODE);
+                    } else if (which ==1) {
+                       Intent pickFolderIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+                        startActivityForResult(pickFolderIntent,PICKFOLDER_REQUEST_CODE);
+                    }
+                });
+        selectedSpinnerIndex = currentDevices.getSelectedItemPosition();
+        alertDialog.show();
+        }
+        catch (Exception e){
+            Log.d("MainActivity",e.getMessage());
+        }
     }
 
     public void btn_search_click(View view){
@@ -122,5 +144,25 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
             Log.d("MainActivity",e.getMessage());
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        try {
+            if (resultCode == RESULT_OK && data != null) {
+                   uri = data.getData();
+                if(requestCode == PICKFILE_REQUEST_CODE){
+                    fileSender.sendFileToDevice(uri,respondDeviceIps.get(selectedSpinnerIndex));
+                }
+                else if(requestCode == PICKFOLDER_REQUEST_CODE){
+                    fileSender.sendFileToDevice(uri,respondDeviceIps.get(selectedSpinnerIndex));
+                }
+            }
+        }catch (Exception e){
+            Log.d("MainActivity",e.getMessage());
+        }
+
     }
 }

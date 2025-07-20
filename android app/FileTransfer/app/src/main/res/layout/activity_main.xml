@@ -1,94 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:padding="16dp"
+    android:background="#F5F5F5">
 
-    <Button
-        android:id="@+id/btn_nanoHttpd_on"
-        android:layout_width="180dp"
-        android:layout_height="51dp"
-        android:text="Trun on Server"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.538" />
-
-    <Button
-        android:id="@+id/btnSendFile"
-        android:layout_width="191dp"
-        android:layout_height="46dp"
-        android:text="Send File"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.81" />
-
-    <Button
-        android:id="@+id/btn_broadcast_respons"
-        android:layout_width="wrap_content"
+    <!--header part -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="BroadCast Response"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626" />
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/btn_nanoHttpd_off"
-        android:layout_width="192dp"
-        android:layout_height="49dp"
-        android:text="Trun Off Server"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.912" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cross PlatForm FIle Transfer"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_marginTop="20dp"/>
 
-    <Button
-        android:id="@+id/btn_search"
-        android:layout_width="163dp"
-        android:layout_height="53dp"
-        android:text="Search Devices"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.438"
-        android:onClick="btn_search_click"/>
+        <Spinner
+            android:id="@+id/spinnerDevices"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/card"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:spinnerMode="dropdown" />
 
-    <Spinner
-        android:layout_width="175dp"
-        android:layout_height="53dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.248"
-        android:id="@+id/spinnerDevices"
-        />
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Search Devices"
+            android:onClick="btn_search_click"
+            android:background="@drawable/card"
+            android:padding="12dp" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.099" />
+        <!-- Main body buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="vertical"
+            android:background="@drawable/card"
+            android:padding="16dp"
+            android:elevation="4dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/btnSendFile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Send File/Folder"
+                android:layout_marginBottom="12dp"
+                android:onClick="sendFile"/>
+
+            <Button
+                android:id="@+id/btn_broadcast_respons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Receive File"
+                android:layout_marginBottom="12dp" />
+
+            <Button
+                android:id="@+id/btn_nanoHttpd_on"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Turn On Server"
+                android:layout_marginBottom="12dp" />
+
+            <Button
+                android:id="@+id/btn_nanoHttpd_off"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Turn Off Server" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:gravity="center"
+            android:background="@drawable/card">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:indeterminate="false"
+                android:progress="0"
+                android:max="100"
+                android:progressDrawable="@drawable/progress_bar"
+                style="?android:attr/progressBarStyleHorizontal" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

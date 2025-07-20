@@ -262,6 +262,7 @@
             this.button4.TabIndex = 32;
             this.button4.Text = "Recive File/Folder";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Home
             // 
