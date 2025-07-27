@@ -1,6 +1,7 @@
 ﻿using FileTransferSoftware.Service_Layer;
 using FileTransferSoftware.Session;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,7 @@ namespace FileTransferSoftware
     {
         private SessionSettings sessionSettings;
         private HomeService homeService = new HomeService();
+        private Queue fileTransferQueue = new Queue();
         private bool isFolder;
         private List<string> fileDetails;
         private List<string> devices;
@@ -33,52 +35,6 @@ namespace FileTransferSoftware
 
         private void btn_start_server_Click(object sender, EventArgs e)
         {
-            if (!isServerOn)
-            {
-                btn_server_stat.Text = "Server Status: Online";
-                isServerOn = true;
-
-                tcpServerCancellationTokenSource = new CancellationTokenSource();
-
-                Task.Run(() =>
-                {
-                    try
-                    {
-                        // Start TCP server with cancellation token to allow stopping
-                        TcpFileReceiver.Start(tcpServerCancellationTokenSource.Token);
-
-                        this.Invoke((MethodInvoker)delegate
-                        {
-                            btn_start_server.BackColor = Color.GreenYellow;
-                            MessageBox.Show("TCP Server started and ready to go", "Server info",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        });
-
-                        UDPBroadcast.startListning();
-                        Console.WriteLine("Start Listening");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.ToString());
-                        this.Invoke((MethodInvoker)delegate
-                        {
-                            btn_start_server.BackColor = Color.Red;
-                        });
-                    }
-                });
-            }
-            else if (isServerOn)
-            {
-                btn_server_stat.Text = "Server Status: Offline";
-
-                // Stop the TCP server by cancelling
-                tcpServerCancellationTokenSource?.Cancel();
-
-                btn_start_server.BackColor = SystemColors.Control;
-                isServerOn = false;
-                MessageBox.Show("Server stopped", "Server info",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
 
 
@@ -255,6 +211,34 @@ namespace FileTransferSoftware
         private void button4_Click(object sender, EventArgs e)
         {
 
+            if (!isServerOn)
+            {
+                btn_server_stat.Text = "Listing to Discovery Message";
+                isServerOn = true;
+
+                tcpServerCancellationTokenSource = new CancellationTokenSource();
+
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        // Start TCP server with cancellation token to allow stopping
+                        TcpFileReceiver.Start(tcpServerCancellationTokenSource.Token);
+                        UDPBroadcast.startListning();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                    }
+                });
+            }
+            else if (isServerOn)
+            {
+                btn_server_stat.Text = "Stoped Listing to Discovery Message";
+
+                // Stop the TCP server by cancelling
+                tcpServerCancellationTokenSource?.Cancel();
+            }
         }
     }
 }

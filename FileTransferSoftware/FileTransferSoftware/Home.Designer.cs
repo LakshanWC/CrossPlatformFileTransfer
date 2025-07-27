@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
-            this.btn_start_server = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btn_choose_file = new System.Windows.Forms.Button();
             this.txt_file_path = new System.Windows.Forms.TextBox();
@@ -42,6 +41,7 @@
             this.rbtn_folder = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.custom_pgb = new System.Windows.Forms.Panel();
             this.lbl_progressCount = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -51,18 +51,10 @@
             this.btn_clear = new System.Windows.Forms.Button();
             this.btn_server_stat = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btn_start_server
-            // 
-            this.btn_start_server.Location = new System.Drawing.Point(16, 52);
-            this.btn_start_server.Name = "btn_start_server";
-            this.btn_start_server.Size = new System.Drawing.Size(75, 23);
-            this.btn_start_server.TabIndex = 0;
-            this.btn_start_server.Text = "Start server";
-            this.btn_start_server.UseVisualStyleBackColor = true;
-            this.btn_start_server.Click += new System.EventHandler(this.btn_start_server_Click);
             // 
             // openFileDialog1
             // 
@@ -98,7 +90,7 @@
             // cmb_devices
             // 
             this.cmb_devices.FormattingEnabled = true;
-            this.cmb_devices.Location = new System.Drawing.Point(107, 52);
+            this.cmb_devices.Location = new System.Drawing.Point(107, 54);
             this.cmb_devices.Name = "cmb_devices";
             this.cmb_devices.Size = new System.Drawing.Size(220, 21);
             this.cmb_devices.TabIndex = 12;
@@ -127,11 +119,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(13, 22);
+            this.label3.Location = new System.Drawing.Point(7, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 13);
+            this.label3.Size = new System.Drawing.Size(95, 13);
             this.label3.TabIndex = 20;
-            this.label3.Text = "Server Control";
+            this.label3.Text = "Activity Monitor";
             // 
             // rbtn_file
             // 
@@ -170,12 +162,21 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Location = new System.Drawing.Point(15, 189);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(408, 100);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Transfer Log";
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Location = new System.Drawing.Point(9, 20);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(387, 74);
+            this.panel1.TabIndex = 0;
             // 
             // custom_pgb
             // 
@@ -264,11 +265,23 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(13, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "Devices";
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(439, 395);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.btn_server_stat);
             this.Controls.Add(this.groupBox2);
@@ -286,10 +299,10 @@
             this.Controls.Add(this.btn_send);
             this.Controls.Add(this.txt_file_path);
             this.Controls.Add(this.btn_choose_file);
-            this.Controls.Add(this.btn_start_server);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Home";
             this.Text = "Form1";
+            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -297,8 +310,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btn_start_server;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btn_choose_file;
         private System.Windows.Forms.TextBox txt_file_path;
@@ -320,6 +331,8 @@
         private System.Windows.Forms.Button btn_server_stat;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

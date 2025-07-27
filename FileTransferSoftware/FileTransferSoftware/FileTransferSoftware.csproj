@@ -64,6 +64,7 @@
     <Compile Include="Service Layer\FileSender.cs" />
     <Compile Include="Service Layer\HomeService.cs" />
     <Compile Include="Service Layer\HttpListenerService.cs" />
+    <Compile Include="Service Layer\Queue.cs" />
     <Compile Include="Service Layer\TcpFileReceiver.cs" />
     <Compile Include="Service Layer\UDPBroadcast.cs" />
     <Compile Include="Session\SessionSettings.cs" />
