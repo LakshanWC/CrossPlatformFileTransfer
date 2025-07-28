@@ -46,5 +46,14 @@ namespace FileTransferSoftware.Service_Layer
         {
             return fileQueue.Count == 0 ;
         }
+
+        public List<QueueItems> getQueue()
+        {
+            return fileQueue;
+        }
+        public void clearQueue()
+        {
+            fileQueue.Clear();
+        }
     }
 }

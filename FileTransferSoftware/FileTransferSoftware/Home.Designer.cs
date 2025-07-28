@@ -41,7 +41,7 @@
             this.rbtn_folder = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel_files = new System.Windows.Forms.Panel();
             this.custom_pgb = new System.Windows.Forms.Panel();
             this.lbl_progressCount = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -162,7 +162,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.panel1);
+            this.groupBox1.Controls.Add(this.panel_files);
             this.groupBox1.Location = new System.Drawing.Point(15, 189);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(408, 100);
@@ -170,13 +170,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Transfer Log";
             // 
-            // panel1
+            // panel_files
             // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Location = new System.Drawing.Point(9, 20);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(387, 74);
-            this.panel1.TabIndex = 0;
+            this.panel_files.AutoScroll = true;
+            this.panel_files.Location = new System.Drawing.Point(9, 20);
+            this.panel_files.Name = "panel_files";
+            this.panel_files.Size = new System.Drawing.Size(387, 74);
+            this.panel_files.TabIndex = 0;
             // 
             // custom_pgb
             // 
@@ -252,7 +252,7 @@
             this.btn_server_stat.Name = "btn_server_stat";
             this.btn_server_stat.Size = new System.Drawing.Size(316, 23);
             this.btn_server_stat.TabIndex = 31;
-            this.btn_server_stat.Text = "Server Status: Offline";
+            this.btn_server_stat.Text = "Idel";
             this.btn_server_stat.UseVisualStyleBackColor = true;
             // 
             // button4
@@ -331,7 +331,7 @@
         private System.Windows.Forms.Button btn_server_stat;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel_files;
         private System.Windows.Forms.Label label1;
     }
 }
