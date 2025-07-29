@@ -55,5 +55,14 @@ namespace FileTransferSoftware.Service_Layer
         {
             fileQueue.Clear();
         }
+
+        public void removeQueueItemByPath(string path)
+        {
+            if (!isEmpty())
+            {
+                var itemToRemove = fileQueue.FirstOrDefault(item => item.filePath == path);
+                fileQueue.Remove(itemToRemove);
+            }
+        }
     }
 }

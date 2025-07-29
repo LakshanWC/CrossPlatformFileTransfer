@@ -100,50 +100,67 @@ namespace FileTransferSoftware
 
         private async void btn_send_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txt_file_path.Text))
+            try
             {
-                int selected = cmb_devices.SelectedIndex;
-
-                // Ensure devices list is populated
-                devices = UDPBroadcast.discoverDevices();
-
-                if (selected >= 0 && selected < devices.Count)
-                { 
-                    var selectedDevice = devices[selected];
-                    Console.WriteLine("i got this: " + selectedDevice);
-
-                    // Extract the encrypted IP part after "|"
-                    string encrypted = selectedDevice.Substring(selectedDevice.LastIndexOf("|") + 1);
-                    Console.WriteLine("Extracted this: " + encrypted);
-
-                    string decryptedIp = EncryptionHelper.Decrypt(encrypted);  
-                    string selectedFilePath = txt_file_path.Text.Trim();  
-
-
-                    if (string.IsNullOrEmpty(decryptedIp) || string.IsNullOrEmpty(selectedFilePath))
-                    {
-                        MessageBox.Show("Please select a device and file.");
-                        return;
-                    }
-
-
-
-                    double result = await FileSender.SendFileOverTcpAsync(decryptedIp, port, selectedFilePath,
-                        progress =>
-                        {
-                            //pb_file_upload_progress.Invoke((MethodInvoker)(() => pb_file_upload_progress.Value = progress));
-                            homeService.fillProgressBar(custom_pgb,panelFill,lbl_progressCount,progress);
-                        },
-                        speed =>
-                        {
-                            Console.WriteLine(speed);
-                            lbl_speed.Invoke((MethodInvoker)(() => lbl_speed.Text = $"Speed: {speed:F2} MB/s"));
-                        });
-                }
-                else
+                if (!string.IsNullOrEmpty(txt_file_path.Text))
                 {
-                    Console.WriteLine("No device selected or invalid index");
+                    int selected = cmb_devices.SelectedIndex;
+
+                    // Ensure devices list is populated
+                   // devices = UDPBroadcast.discoverDevices();
+
+                    if (selected >= 0 && selected < devices.Count)
+                    {
+                        var selectedDevice = devices[selected];
+                        Console.WriteLine("i got this: " + selectedDevice);
+
+                        // Extract the encrypted IP part after "|"
+                        string encrypted = selectedDevice.Substring(selectedDevice.LastIndexOf("|") + 1);
+                        Console.WriteLine("Extracted this: " + encrypted);
+
+                        string decryptedIp = EncryptionHelper.Decrypt(encrypted);
+                        string selectedFilePath = txt_file_path.Text.Trim();
+
+
+                        if (string.IsNullOrEmpty(decryptedIp) || string.IsNullOrEmpty(selectedFilePath))
+                        {
+                            MessageBox.Show("Please select a device and file.");
+                            return;
+                        }
+
+                        foreach (QueueItems items in fileTransferQueue.getQueue().ToList())
+                        {
+                            string filePath = items.filePath.Trim();
+                            if (!string.IsNullOrEmpty(filePath))
+                            {
+                                items.transferStatus = "Sending";
+                                showQueue(fileTransferQueue.getQueue());
+
+                                double result = await FileSender.SendFileOverTcpAsync(decryptedIp, port, filePath,
+                                    progress =>
+                                    {
+                                        homeService.fillProgressBar(custom_pgb, panelFill, lbl_progressCount, progress);
+                                    },
+                                    speed =>
+                                    {
+                                        Console.WriteLine(speed);
+                                        lbl_speed.Invoke((MethodInvoker)(() => lbl_speed.Text = $"Speed: {speed:F2} MB/s"));
+                                    });
+
+                                items.transferStatus = "Sent";
+                                showQueue(fileTransferQueue.getQueue());
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No device selected or invalid index");
+                    }
                 }
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message.ToString()); 
             }
         }
 
@@ -256,7 +273,8 @@ namespace FileTransferSoftware
             Button btn = sender as Button;
             if (btn != null && btn.Parent != null)
             {
-                panel_files.Controls.Remove(btn.Parent); // Remove the whole row 
+                panel_files.Controls.Remove(btn.Parent); // Remove the row 
+                fileTransferQueue.removeQueueItemByPath(btn.Tag as string); //remove from queue
             }
         }
 
@@ -284,7 +302,8 @@ namespace FileTransferSoftware
                     btn.Text = "X";
                     btn.Size = new Size(20, 20);
                     btn.Location = new Point(5, 2);
-                    btn.Click += btn_onClick; // Will remove row for the corresponding button
+                    btn.Tag = item.filePath;
+                    btn.Click += btn_onClick; // to remove row for the corresponding button
 
                     // File path label
                     Label lbl_fileName = new Label();
@@ -296,7 +315,7 @@ namespace FileTransferSoftware
                     Label lbl_status = new Label();
                     lbl_status.Text = item.transferStatus.ToString();
                     lbl_status.AutoSize = true;
-                    lbl_status.Location = new Point(330, 7);
+                    lbl_status.Location = new Point(350, 7);
 
                     rowPanel.Controls.Add(btn);
                     rowPanel.Controls.Add(lbl_fileName);
