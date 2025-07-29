@@ -9,3 +9,4 @@ D:\myProjects\FileTransferSoftware\FileTransferSoftware\bin\Debug\FileTransferSo
 D:\myProjects\FileTransferSoftware\FileTransferSoftware\bin\Debug\FileTransferSoftware.pdb
 D:\myProjects\FileTransferSoftware\FileTransferSoftware\obj\Debug\FileTransferSoftware.exe
 D:\myProjects\FileTransferSoftware\FileTransferSoftware\obj\Debug\FileTransferSoftware.pdb
+D:\myProjects\FileTransferSoftware\FileTransferSoftware\obj\Debug\FileTransferSoftware.exe.config

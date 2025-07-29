@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
-            this.btn_start_server = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btn_choose_file = new System.Windows.Forms.Button();
             this.txt_file_path = new System.Windows.Forms.TextBox();
@@ -42,6 +41,7 @@
             this.rbtn_folder = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel_files = new System.Windows.Forms.Panel();
             this.custom_pgb = new System.Windows.Forms.Panel();
             this.lbl_progressCount = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -51,18 +51,10 @@
             this.btn_clear = new System.Windows.Forms.Button();
             this.btn_server_stat = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btn_start_server
-            // 
-            this.btn_start_server.Location = new System.Drawing.Point(16, 52);
-            this.btn_start_server.Name = "btn_start_server";
-            this.btn_start_server.Size = new System.Drawing.Size(75, 23);
-            this.btn_start_server.TabIndex = 0;
-            this.btn_start_server.Text = "Start server";
-            this.btn_start_server.UseVisualStyleBackColor = true;
-            this.btn_start_server.Click += new System.EventHandler(this.btn_start_server_Click);
             // 
             // openFileDialog1
             // 
@@ -70,7 +62,7 @@
             // 
             // btn_choose_file
             // 
-            this.btn_choose_file.Location = new System.Drawing.Point(349, 102);
+            this.btn_choose_file.Location = new System.Drawing.Point(390, 102);
             this.btn_choose_file.Name = "btn_choose_file";
             this.btn_choose_file.Size = new System.Drawing.Size(75, 23);
             this.btn_choose_file.TabIndex = 1;
@@ -80,14 +72,14 @@
             // 
             // txt_file_path
             // 
-            this.txt_file_path.Location = new System.Drawing.Point(107, 102);
+            this.txt_file_path.Location = new System.Drawing.Point(112, 102);
             this.txt_file_path.Name = "txt_file_path";
-            this.txt_file_path.Size = new System.Drawing.Size(220, 20);
+            this.txt_file_path.Size = new System.Drawing.Size(251, 20);
             this.txt_file_path.TabIndex = 2;
             // 
             // btn_send
             // 
-            this.btn_send.Location = new System.Drawing.Point(107, 148);
+            this.btn_send.Location = new System.Drawing.Point(112, 148);
             this.btn_send.Name = "btn_send";
             this.btn_send.Size = new System.Drawing.Size(107, 23);
             this.btn_send.TabIndex = 10;
@@ -98,14 +90,14 @@
             // cmb_devices
             // 
             this.cmb_devices.FormattingEnabled = true;
-            this.cmb_devices.Location = new System.Drawing.Point(107, 52);
+            this.cmb_devices.Location = new System.Drawing.Point(112, 54);
             this.cmb_devices.Name = "cmb_devices";
-            this.cmb_devices.Size = new System.Drawing.Size(220, 21);
+            this.cmb_devices.Size = new System.Drawing.Size(251, 21);
             this.cmb_devices.TabIndex = 12;
             // 
             // btn_search
             // 
-            this.btn_search.Location = new System.Drawing.Point(353, 52);
+            this.btn_search.Location = new System.Drawing.Point(394, 52);
             this.btn_search.Name = "btn_search";
             this.btn_search.Size = new System.Drawing.Size(71, 23);
             this.btn_search.TabIndex = 14;
@@ -117,7 +109,7 @@
             // 
             this.lbl_speed.AutoSize = true;
             this.lbl_speed.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_speed.Location = new System.Drawing.Point(17, 305);
+            this.lbl_speed.Location = new System.Drawing.Point(17, 351);
             this.lbl_speed.Name = "lbl_speed";
             this.lbl_speed.Size = new System.Drawing.Size(64, 13);
             this.lbl_speed.TabIndex = 18;
@@ -127,11 +119,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(13, 22);
+            this.label3.Location = new System.Drawing.Point(12, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 13);
+            this.label3.Size = new System.Drawing.Size(95, 13);
             this.label3.TabIndex = 20;
-            this.label3.Text = "Server Control";
+            this.label3.Text = "Activity Monitor";
             // 
             // rbtn_file
             // 
@@ -170,25 +162,34 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.panel_files);
             this.groupBox1.Location = new System.Drawing.Point(15, 189);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(408, 100);
+            this.groupBox1.Size = new System.Drawing.Size(450, 147);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Transfer Log";
             // 
+            // panel_files
+            // 
+            this.panel_files.AutoScroll = true;
+            this.panel_files.Location = new System.Drawing.Point(9, 20);
+            this.panel_files.Name = "panel_files";
+            this.panel_files.Size = new System.Drawing.Size(435, 121);
+            this.panel_files.TabIndex = 0;
+            // 
             // custom_pgb
             // 
-            this.custom_pgb.Location = new System.Drawing.Point(103, 305);
+            this.custom_pgb.Location = new System.Drawing.Point(103, 351);
             this.custom_pgb.Name = "custom_pgb";
-            this.custom_pgb.Size = new System.Drawing.Size(268, 13);
+            this.custom_pgb.Size = new System.Drawing.Size(320, 13);
             this.custom_pgb.TabIndex = 28;
             // 
             // lbl_progressCount
             // 
             this.lbl_progressCount.AutoSize = true;
             this.lbl_progressCount.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_progressCount.Location = new System.Drawing.Point(394, 303);
+            this.lbl_progressCount.Location = new System.Drawing.Point(439, 349);
             this.lbl_progressCount.Name = "lbl_progressCount";
             this.lbl_progressCount.Size = new System.Drawing.Size(26, 15);
             this.lbl_progressCount.TabIndex = 29;
@@ -199,9 +200,9 @@
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Location = new System.Drawing.Point(16, 326);
+            this.groupBox2.Location = new System.Drawing.Point(16, 373);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(404, 57);
+            this.groupBox2.Size = new System.Drawing.Size(459, 57);
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
             // 
@@ -216,7 +217,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(306, 24);
+            this.button1.Location = new System.Drawing.Point(337, 24);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(71, 23);
             this.button1.TabIndex = 31;
@@ -237,7 +238,7 @@
             // 
             // btn_clear
             // 
-            this.btn_clear.Location = new System.Drawing.Point(219, 148);
+            this.btn_clear.Location = new System.Drawing.Point(240, 148);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Size = new System.Drawing.Size(92, 23);
             this.btn_clear.TabIndex = 25;
@@ -247,16 +248,16 @@
             // 
             // btn_server_stat
             // 
-            this.btn_server_stat.Location = new System.Drawing.Point(107, 17);
+            this.btn_server_stat.Location = new System.Drawing.Point(112, 17);
             this.btn_server_stat.Name = "btn_server_stat";
-            this.btn_server_stat.Size = new System.Drawing.Size(316, 23);
+            this.btn_server_stat.Size = new System.Drawing.Size(353, 23);
             this.btn_server_stat.TabIndex = 31;
-            this.btn_server_stat.Text = "Server Status: Offline";
+            this.btn_server_stat.Text = "Idel";
             this.btn_server_stat.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(322, 148);
+            this.button4.Location = new System.Drawing.Point(363, 148);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(102, 23);
             this.button4.TabIndex = 32;
@@ -264,11 +265,23 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(13, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "Devices";
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(439, 395);
+            this.ClientSize = new System.Drawing.Size(487, 440);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.btn_server_stat);
             this.Controls.Add(this.groupBox2);
@@ -286,10 +299,10 @@
             this.Controls.Add(this.btn_send);
             this.Controls.Add(this.txt_file_path);
             this.Controls.Add(this.btn_choose_file);
-            this.Controls.Add(this.btn_start_server);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Home";
             this.Text = "Form1";
+            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -297,8 +310,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btn_start_server;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btn_choose_file;
         private System.Windows.Forms.TextBox txt_file_path;
@@ -320,6 +331,8 @@
         private System.Windows.Forms.Button btn_server_stat;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Panel panel_files;
+        private System.Windows.Forms.Label label1;
     }
 }
 
